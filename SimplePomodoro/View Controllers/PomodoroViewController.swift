@@ -37,8 +37,7 @@ class PomodoroViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: Any) {
-        self.countdownLabel.textColor = .systemOrange
-        self.scheduleTimer(duration: self.settingsTableViewController.focusTimePicker.countDownDuration)
+        scheduleFocusTimer()
     }
     
     @IBAction func stopButtonPressed(_ sender: Any) {
@@ -48,7 +47,61 @@ class PomodoroViewController: UIViewController {
         self.countdownLabel.text = "00:00:00"
     }
     
-    func scheduleTimer(duration: TimeInterval) {
+    func scheduleFocusTimer() {
+        self.countdownLabel.textColor = .systemOrange
+        
+        let focusTimeDuration = self.settingsTableViewController.focusTimePicker.countDownDuration
+        self.scheduleCountDownTimer(duration: focusTimeDuration,
+                                    alertTitle: "Times Up!",
+                                    alertMessage: "Time to take a break!",
+                                    completionHandler: self.scheduleBreakTimer)
+        
+//        // Schedule notification to trigger when timer elapses
+//        if self.allowNotifications {
+//            // Configure the notification's payload.
+//            let content = UNMutableNotificationContent()
+//            content.title = NSString.localizedUserNotificationString(forKey: "Hello!", arguments: nil)
+//            content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
+//            content.sound = UNNotificationSound.default
+//
+//            // Deliver the notification in five seconds.
+//            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+//            // Schedule the notification.
+//            let request = UNNotificationRequest(identifier: "WorkAlarm", content: content, trigger: trigger)
+//            let center = UNUserNotificationCenter.current()
+//            center.add(request) { (error : Error?) in
+//                if let theError = error {
+//                    // Handle any errors
+//                }
+//            }
+//        }
+    }
+    
+    func scheduleBreakTimer() {
+        self.countdownLabel.textColor = .systemBlue
+        
+        // If repeat switch is set to true, schedule the focus timer to directly
+        // follow the break timer
+        var alertMessage: String
+        var nextTimerFunction: (() -> Void)?
+        if self.settingsTableViewController.repeatSwitch.isOn {
+            nextTimerFunction = scheduleFocusTimer
+            alertMessage = "Get back to work!"
+        }
+        else {
+            alertMessage = "Good job!"
+        }
+        
+        let breakTimeDuration = self.settingsTableViewController.breakTimePicker.countDownDuration
+        self.scheduleCountDownTimer(duration: breakTimeDuration,
+                                    alertTitle: "Times Up!",
+                                    alertMessage: alertMessage,
+                                    completionHandler: nextTimerFunction)
+    }
+    
+    /// Schedules a countdown timer with the specified duration. After the timer expires, the completion handler is executed.
+    /// This can be used to trigger sequential timers.
+    func scheduleCountDownTimer(duration: TimeInterval, alertTitle: String?, alertMessage: String?, completionHandler: (() -> Void)? ) {
         // Initialize countdown timer label
         self.countdownTime = duration
         self.countdownLabel.text = self.formatCountdownTimeString(duration: self.countdownTime)
@@ -61,29 +114,21 @@ class PomodoroViewController: UIViewController {
    
                 if self.countdownTime.isZero {
                     self.timer.invalidate()
+
+                    let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+                    // Kick off completion handler after user closes the aleret
+                    alert.addAction(UIAlertAction(title: "OK", style: .default)
+                    {
+                        _ in
+                        if let completionHandler = completionHandler {
+                            completionHandler()
+                        }
+                    })
+                    
+                    self.present(alert, animated: true)
                 }
             }
         })
-        
-        // Schedule notification to trigger when timer elapses
-        if self.allowNotifications {
-            // Configure the notification's payload.
-            let content = UNMutableNotificationContent()
-            content.title = NSString.localizedUserNotificationString(forKey: "Hello!", arguments: nil)
-            content.body = NSString.localizedUserNotificationString(forKey: "Hello_message_body", arguments: nil)
-            content.sound = UNNotificationSound.default
-            
-            // Deliver the notification in five seconds.
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-            // Schedule the notification.
-            let request = UNNotificationRequest(identifier: "WorkAlarm", content: content, trigger: trigger)
-            let center = UNUserNotificationCenter.current()
-            center.add(request) { (error : Error?) in
-                if let theError = error {
-                    // Handle any errors
-                }
-            }
-        }
     }
     
     func formatCountdownTimeString(duration: TimeInterval) -> String {
