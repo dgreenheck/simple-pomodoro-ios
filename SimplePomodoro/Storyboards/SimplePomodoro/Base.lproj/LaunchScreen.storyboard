@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rnw-6u-ocJ" userLabel="Countdown Timer">
+                                <rect key="frame" x="0.0" y="16" width="414" height="111"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2b-ky-IsM" userLabel="Countdown Timer Label View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="6af-bA-nE2" userLabel="Timer Label">
+                                                <rect key="frame" x="16" y="5" width="382" height="100.33333333333333"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="84"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="6af-bA-nE2" secondAttribute="trailing" constant="16" id="3me-bP-xSK"/>
+                                            <constraint firstItem="6af-bA-nE2" firstAttribute="centerY" secondItem="x2b-ky-IsM" secondAttribute="centerY" id="g6H-aI-mhN"/>
+                                            <constraint firstAttribute="height" constant="110" id="iF1-mT-KpR"/>
+                                            <constraint firstItem="6af-bA-nE2" firstAttribute="leading" secondItem="x2b-ky-IsM" secondAttribute="leading" constant="16" id="kiw-4r-eQ4"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh9-Az-3EH" userLabel="Separator">
+                                        <rect key="frame" x="0.0" y="110" width="414" height="1"/>
+                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="XSf-wB-cRu"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5j-wG-0dw" userLabel="Timer Settings Container View">
+                                <rect key="frame" x="0.0" y="127" width="414" height="480"/>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76J-Fq-O4e" userLabel="Separator">
+                                <rect key="frame" x="0.0" y="607" width="414" height="1"/>
+                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="8iT-g5-5zN"/>
+                                </constraints>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-YF-Rqh" userLabel="Button Horizontal Stack View">
+                                <rect key="frame" x="32" y="624" width="350" height="96"/>
+                                <subviews>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZY-Xf-oo7" customClass="CircleButton" customModule="SimplePomodoro" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="bay-OG-0k0"/>
+                                            <constraint firstAttribute="width" secondItem="OZY-Xf-oo7" secondAttribute="height" multiplier="1:1" id="gMG-Md-I19"/>
+                                        </constraints>
+                                        <state key="normal" title="Reset"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
+                                                <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
+                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorLight">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorDark">
+                                                <color key="value" cocoaTouchSystemColor="lightTextColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fND-nT-LDf">
+                                        <rect key="frame" x="96" y="0.0" width="158" height="96"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwQ-ih-Ica" customClass="CircleButton" customModule="SimplePomodoro" customModuleProvider="target">
+                                        <rect key="frame" x="254" y="0.0" width="96" height="96"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="iwQ-ih-Ica" secondAttribute="height" multiplier="1:1" id="NXd-m4-oHf"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="OfP-nc-YqX"/>
+                                        </constraints>
+                                        <state key="normal" title="Start"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
+                                                <color key="value" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="0.34999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
+                                                <color key="value" red="0.19607843137254902" green="0.68627450980392157" blue="0.29411764705882354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorDark">
+                                                <color key="value" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorLight">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9OF-YF-Rqh" secondAttribute="bottom" constant="16" id="9Zq-fY-eR1"/>
+                            <constraint firstItem="76J-Fq-O4e" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="PW3-fk-6DG"/>
+                            <constraint firstItem="Rnw-6u-ocJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="Tni-M6-you"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Rnw-6u-ocJ" secondAttribute="trailing" id="WI1-t7-e0t"/>
+                            <constraint firstItem="9OF-YF-Rqh" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="bPo-CG-eiN"/>
+                            <constraint firstItem="T5j-wG-0dw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bZg-6w-5qy"/>
+                            <constraint firstItem="T5j-wG-0dw" firstAttribute="top" secondItem="Rnw-6u-ocJ" secondAttribute="bottom" id="cpj-ME-nGi"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="9OF-YF-Rqh" secondAttribute="trailing" constant="32" id="hDk-NH-Nax"/>
+                            <constraint firstItem="9OF-YF-Rqh" firstAttribute="top" secondItem="76J-Fq-O4e" secondAttribute="bottom" constant="16" id="jyn-pc-Cc7"/>
+                            <constraint firstItem="Rnw-6u-ocJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="oHr-jT-55s"/>
+                            <constraint firstItem="76J-Fq-O4e" firstAttribute="top" secondItem="T5j-wG-0dw" secondAttribute="bottom" id="tzb-vK-UiG"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="T5j-wG-0dw" secondAttribute="trailing" id="yFO-0P-Qd5"/>
+                            <constraint firstItem="76J-Fq-O4e" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ypm-M4-XUa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="136.14130434782609"/>
+        </scene>
+    </scenes>
+</document>
