@@ -1,15 +1,14 @@
 //
-//  SimplePomodoroTests.swift
+//  PomodoroTimerTests.swift
 //  SimplePomodoroTests
 //
-//  Created by Daniel Greenheck on 10/25/19.
+//  Created by Daniel Greenheck on 12/16/19.
 //  Copyright © 2019 Max Q Software LLC. All rights reserved.
 //
 
 import XCTest
-@testable import SimplePomodoro
 
-class SimplePomodoroTests: XCTestCase {
+class PomodoroTimerTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,7 +18,7 @@ class SimplePomodoroTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func test_() {
+    func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }

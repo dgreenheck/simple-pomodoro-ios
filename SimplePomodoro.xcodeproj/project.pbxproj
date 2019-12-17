@@ -15,6 +15,13 @@
 		7D7D5AFA23638D9100B345FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7D5AF923638D9100B345FB /* Assets.xcassets */; };
 		7D7D5B0823638D9100B345FB /* SimplePomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */; };
 		7D7D5B1323638D9100B345FB /* SimplePomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */; };
+		7D88A86623A8787B005E5670 /* PomodoroTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */; };
+		7DC1000023A857F1009214C2 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */; };
+		7DC1000123A857F3009214C2 /* PomodoroTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */; };
+		7DC1FFF623A845A2009214C2 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */; };
+		7DC1FFFB23A84DEF009214C2 /* TimeInterval+formatHHMMSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFFA23A84DEF009214C2 /* TimeInterval+formatHHMMSS.swift */; };
+		7DC1FFFD23A8502C009214C2 /* PomodoroTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */; };
+		7DC1FFFF23A857CA009214C2 /* CountdownTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFFE23A857CA009214C2 /* CountdownTimerTests.swift */; };
 		7DE21B7523677B3D0077AB78 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DE21B7423677B3D0077AB78 /* SettingsTableViewController.swift */; };
 		7DE21B7923678CEE0077AB78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE21B7723678CEE0077AB78 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -51,6 +58,11 @@
 		7D7D5B0E23638D9100B345FB /* SimplePomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplePomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePomodoroUITests.swift; sourceTree = "<group>"; };
 		7D7D5B1423638D9100B345FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerTests.swift; sourceTree = "<group>"; };
+		7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
+		7DC1FFFA23A84DEF009214C2 /* TimeInterval+formatHHMMSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+formatHHMMSS.swift"; sourceTree = "<group>"; };
+		7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimer.swift; sourceTree = "<group>"; };
+		7DC1FFFE23A857CA009214C2 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
 		7DE21B7423677B3D0077AB78 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		7DE21B7823678CEE0077AB78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SimplePomodoro/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +115,8 @@
 		7D7D5AEF23638D9100B345FB /* SimplePomodoro */ = {
 			isa = PBXGroup;
 			children = (
+				7DC1FFF923A84DD1009214C2 /* Extensions */,
+				7DC1FFF423A84590009214C2 /* Models */,
 				7DE21B7623678CB10077AB78 /* Controls */,
 				7DE21B7A23678D480077AB78 /* Storyboards */,
 				7DE21B7323677B1E0077AB78 /* View Controllers */,
@@ -117,6 +131,8 @@
 		7D7D5B0623638D9100B345FB /* SimplePomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */,
+				7DC1FFFE23A857CA009214C2 /* CountdownTimerTests.swift */,
 				7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */,
 				7D7D5B0923638D9100B345FB /* Info.plist */,
 			);
@@ -130,6 +146,23 @@
 				7D7D5B1423638D9100B345FB /* Info.plist */,
 			);
 			path = SimplePomodoroUITests;
+			sourceTree = "<group>";
+		};
+		7DC1FFF423A84590009214C2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */,
+				7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7DC1FFF923A84DD1009214C2 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7DC1FFFA23A84DEF009214C2 /* TimeInterval+formatHHMMSS.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		7DE21B7323677B1E0077AB78 /* View Controllers */ = {
@@ -290,9 +323,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7AC3612363B6BF007EA31B /* CircleButton.swift in Sources */,
+				7DC1FFF623A845A2009214C2 /* CountdownTimer.swift in Sources */,
 				7D7D5AF523638D9100B345FB /* PomodoroViewController.swift in Sources */,
+				7DC1FFFD23A8502C009214C2 /* PomodoroTimer.swift in Sources */,
 				7DE21B7523677B3D0077AB78 /* SettingsTableViewController.swift in Sources */,
 				7D7D5AF123638D9100B345FB /* AppDelegate.swift in Sources */,
+				7DC1FFFB23A84DEF009214C2 /* TimeInterval+formatHHMMSS.swift in Sources */,
 				7D7D5AF323638D9100B345FB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,6 +338,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7D5B0823638D9100B345FB /* SimplePomodoroTests.swift in Sources */,
+				7DC1000023A857F1009214C2 /* CountdownTimer.swift in Sources */,
+				7DC1000123A857F3009214C2 /* PomodoroTimer.swift in Sources */,
+				7DC1FFFF23A857CA009214C2 /* CountdownTimerTests.swift in Sources */,
+				7D88A86623A8787B005E5670 /* PomodoroTimerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

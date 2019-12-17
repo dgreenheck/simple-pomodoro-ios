@@ -81,7 +81,7 @@ import UIKit
             backgroundColor = self.backgroundColorLight.cgColor
         }
         
-        context.setFillColor(UIColor.systemBackground.cgColor)
+        context.setFillColor(self.backgroundColor!.cgColor)
         context.fill(rect)
         
         // --------- BUTTON BACKGROUND ------------- //

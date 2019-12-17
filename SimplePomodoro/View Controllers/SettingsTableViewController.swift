@@ -9,17 +9,40 @@
 import UIKit
 
 class SettingsTableViewController: UITableViewController {
-    // Constants
+    // MARK: - Constants
     private let ANIMATION_DURATION = 0.2
     private let TIME_PICKER_EXPANDED_HEIGHT: CGFloat = 216
     
-    // UI oulets
+    // MARK: - Public Properties
+    
+    /// User selected duration for the focus period
+    public var focusPeriodDuration: TimeInterval {
+        get {
+            return self.focusTimePicker.countDownDuration
+        }
+    }
+    
+    /// User selected duration for the break period
+    public var breakPeriodDuration: TimeInterval {
+        get {
+            return self.breakTimePicker.countDownDuration
+        }
+    }
+    
+    // Mark: - Outlets
+    
+    @IBOutlet weak var repeatSwitch: UISwitch!
+    @IBOutlet weak var alertSwitch: UISwitch!
+    @IBOutlet weak var alarmSwitch: UISwitch!
+    
     @IBOutlet weak var focusTimeLabel: UILabel!
     @IBOutlet weak var breakTimeLabel: UILabel!
     @IBOutlet weak var focusTimePicker: UIDatePicker!
     @IBOutlet weak var breakTimePicker: UIDatePicker!
+    
     @IBOutlet weak var focusTimePickerCell: UITableViewCell!
     @IBOutlet weak var breakTimePickerCell: UITableViewCell!
+    
     @IBOutlet var focusTimeTapGestureRecognizer: UITapGestureRecognizer!
     @IBOutlet var breakTimeTapGestureRecognizer: UITapGestureRecognizer!
     
@@ -40,22 +63,26 @@ class SettingsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    /// Customize table view cell row heights
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight: CGFloat = 48
         
-        switch indexPath.row {
-        case 1:
-            rowHeight = focusTimePickerCellHeight
-        case 3:
-            rowHeight = breakTimePickerCellHeight
-        default:
-            rowHeight = 48
+        // For the date picker cells, set cell heights to 0 if collapsed
+        if indexPath.section == 0 {
+            switch indexPath.row {
+            case 1:
+                rowHeight = focusTimePickerCellHeight
+            case 3:
+                rowHeight = breakTimePickerCellHeight
+            default:
+                rowHeight = 48
+            }
         }
         
         return rowHeight
     }
     
-    @IBAction func focusTimeLabelTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func focusTimeCellTapped(_ sender: UITapGestureRecognizer) {
         // If user is editing break time, collapse that first
         if !self.breakTimePickerCollapsed {
             DispatchQueue.main.async {
@@ -66,7 +93,7 @@ class SettingsTableViewController: UITableViewController {
         self.expandCollapseFocusTimePicker()
     }
     
-    @IBAction func breakTimeLabelTapped(_ sender: UITapGestureRecognizer) {
+    @IBAction func breakTimeCellTapped(_ sender: UITapGestureRecognizer) {
         // If user is editing focus time, collapse that first
         if !self.focusTimePickerCollapsed {
             DispatchQueue.main.async {

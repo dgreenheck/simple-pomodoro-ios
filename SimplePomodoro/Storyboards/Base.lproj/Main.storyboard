@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -12,17 +12,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="PomodoroViewController" customModule="SimplePomodoro" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Rnw-6u-ocJ" userLabel="Countdown Timer">
-                                <rect key="frame" x="0.0" y="16" width="414" height="111"/>
+                                <rect key="frame" x="0.0" y="16" width="375" height="111"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x2b-ky-IsM" userLabel="Countdown Timer Label View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="110"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="6af-bA-nE2" userLabel="Timer Label">
-                                                <rect key="frame" x="16" y="5" width="382" height="100.33333333333333"/>
+                                                <rect key="frame" x="16" y="5" width="343" height="100.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="84"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -36,7 +36,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh9-Az-3EH" userLabel="Separator">
-                                        <rect key="frame" x="0.0" y="110" width="414" height="1"/>
+                                        <rect key="frame" x="0.0" y="110" width="375" height="1"/>
                                         <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="XSf-wB-cRu"/>
@@ -45,23 +45,23 @@
                                 </subviews>
                             </stackView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T5j-wG-0dw" userLabel="Timer Settings Container View">
-                                <rect key="frame" x="0.0" y="127" width="414" height="480"/>
+                                <rect key="frame" x="0.0" y="127" width="375" height="427"/>
                                 <connections>
                                     <segue destination="3yC-oa-FXw" kind="embed" identifier="embedSettingsTableViewSegue" id="vpa-b4-CCt"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="76J-Fq-O4e" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="607" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="554" width="375" height="1"/>
                                 <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="8iT-g5-5zN"/>
                                 </constraints>
                             </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-YF-Rqh" userLabel="Button Horizontal Stack View">
-                                <rect key="frame" x="32" y="624" width="350" height="96"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="9OF-YF-Rqh" userLabel="Button Horizontal Stack View">
+                                <rect key="frame" x="32" y="571" width="311" height="80"/>
                                 <subviews>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OZY-Xf-oo7" customClass="CircleButton" customModule="SimplePomodoro" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="96" height="96"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="bay-OG-0k0"/>
@@ -70,10 +70,10 @@
                                         <state key="normal" title="Reset"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
-                                                <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" cyan="0.0" magenta="1" yellow="1" black="0.47613873679782392" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
-                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="value" cyan="0.00057073670905083418" magenta="1" yellow="1" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="color" keyPath="labelColorLight">
                                                 <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -83,15 +83,37 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="stopButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xB2-gn-0wb"/>
+                                            <action selector="resetButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xB2-gn-0wb"/>
                                         </connections>
                                     </button>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fND-nT-LDf">
-                                        <rect key="frame" x="96" y="0.0" width="158" height="96"/>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mpB-FT-LNT" customClass="CircleButton" customModule="SimplePomodoro" customModuleProvider="target">
+                                        <rect key="frame" x="115.5" y="0.0" width="80" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                    </view>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="cDv-pX-tBA"/>
+                                            <constraint firstAttribute="width" secondItem="mpB-FT-LNT" secondAttribute="height" multiplier="1:1" id="fVS-uq-Ybo"/>
+                                        </constraints>
+                                        <state key="normal" title="Pause"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorDark">
+                                                <color key="value" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="backgroundColorLight">
+                                                <color key="value" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorLight">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="labelColorDark">
+                                                <color key="value" cocoaTouchSystemColor="lightTextColor"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="pauseButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yWe-SC-bC0"/>
+                                        </connections>
+                                    </button>
                                     <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwQ-ih-Ica" customClass="CircleButton" customModule="SimplePomodoro" customModuleProvider="target">
-                                        <rect key="frame" x="254" y="0.0" width="96" height="96"/>
+                                        <rect key="frame" x="231" y="0.0" width="80" height="80"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iwQ-ih-Ica" secondAttribute="height" multiplier="1:1" id="NXd-m4-oHf"/>
@@ -117,6 +139,9 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="RLo-Z0-JRL"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -154,36 +179,34 @@
             <objects>
                 <tableViewController id="3yC-oa-FXw" customClass="SettingsTableViewController" customModule="SimplePomodoro" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="JeR-Zt-UDS">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1106"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="sectionIndexBackgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <sections>
-                            <tableViewSection headerTitle="TIMER SETTINGS" id="SIA-Kt-SYe">
+                            <tableViewSection headerTitle="TIMER" id="SIA-Kt-SYe">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="UaU-Xb-Dpx" userLabel="Focus Time Label Cell">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="55.5" width="1024" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UaU-Xb-Dpx" id="O4n-0Z-QFf">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="566-ux-sNC" userLabel="Focus Time Labels">
-                                                    <rect key="frame" x="16" y="0.0" width="830" height="48"/>
+                                                    <rect key="frame" x="16" y="0.0" width="992" height="48"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Focus Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbJ-uK-Alg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="519.66666666666663" height="48"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="620" height="48"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="25 min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wpr-Sh-fSX" userLabel="Focus Time Duration">
-                                                            <rect key="frame" x="519.66666666666663" y="0.0" width="310.33333333333337" height="48"/>
+                                                            <rect key="frame" x="620" y="0.0" width="372" height="48"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
-                                                            <connections>
-                                                                <outletCollection property="gestureRecognizers" destination="zr4-Gp-bwB" appends="YES" id="xYM-o0-4Du"/>
-                                                            </connections>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
@@ -195,16 +218,19 @@
                                                 <constraint firstAttribute="bottom" secondItem="566-ux-sNC" secondAttribute="bottom" id="kII-f9-KbQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="zr4-Gp-bwB" appends="YES" id="8Fu-wi-4dj"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="0.0" id="bJC-Tv-mN1" userLabel="Focus TIme Picker Cell">
-                                        <rect key="frame" x="0.0" y="103.33333206176758" width="414" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="103.5" width="1024" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bJC-Tv-mN1" id="Tbz-zh-moP">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1.1920928955078125e-07"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker alpha="0.0" contentMode="scaleToFill" verticalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="1500" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DL7-gW-FJE" userLabel="Focus Time Picker">
-                                                    <rect key="frame" x="32" y="0.0" width="814" height="216"/>
+                                                    <rect key="frame" x="32" y="0.0" width="976" height="216"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="216" id="jgQ-oS-fT6"/>
                                                     </constraints>
@@ -218,29 +244,26 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="Von-O2-Syp" userLabel="Break Time Label Cell">
-                                        <rect key="frame" x="0.0" y="103.33333218097687" width="414" height="48"/>
+                                        <rect key="frame" x="0.0" y="103.50000011920929" width="1024" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Von-O2-Syp" id="f8U-Ky-cmo">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="zYW-Ig-tgi" userLabel="Break TIme Labels">
-                                                    <rect key="frame" x="16" y="0.0" width="830" height="48"/>
+                                                    <rect key="frame" x="16" y="0.0" width="992" height="48"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Break Time" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CGT-IA-fD6">
-                                                            <rect key="frame" x="0.0" y="0.0" width="555" height="48"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="663.5" height="48"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="5 min" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJZ-KR-59W" userLabel="Focus Time Duration">
-                                                            <rect key="frame" x="555" y="0.0" width="275" height="48"/>
+                                                            <rect key="frame" x="663.5" y="0.0" width="328.5" height="48"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
-                                                            <connections>
-                                                                <outletCollection property="gestureRecognizers" destination="G3Y-wx-poz" appends="YES" id="hIQ-pH-aM9"/>
-                                                            </connections>
                                                         </label>
                                                     </subviews>
                                                 </stackView>
@@ -252,16 +275,19 @@
                                                 <constraint firstAttribute="bottom" secondItem="zYW-Ig-tgi" secondAttribute="bottom" id="ns6-oD-PaY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="G3Y-wx-poz" appends="YES" id="hl3-hm-vEi"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="0.0" id="EYu-4J-bK1" userLabel="Break Time Picker Cell">
-                                        <rect key="frame" x="0.0" y="151.33333218097687" width="414" height="1.1920928955078125e-07"/>
+                                        <rect key="frame" x="0.0" y="151.50000011920929" width="1024" height="1.1920928955078125e-07"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EYu-4J-bK1" id="Ky5-G3-slI">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="1.1920928955078125e-07"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="1.1920928955078125e-07"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker alpha="0.0" contentMode="scaleToFill" verticalCompressionResistancePriority="740" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="300" minuteInterval="1" useCurrentDate="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iE-Pj-7kp" userLabel="Break Time Picker">
-                                                    <rect key="frame" x="32" y="0.0" width="814" height="216"/>
+                                                    <rect key="frame" x="32" y="0.0" width="976" height="216"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="216" id="tsV-5b-9GQ"/>
                                                     </constraints>
@@ -274,6 +300,100 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="jSG-G4-vVV" userLabel="Repeat Cell">
+                                        <rect key="frame" x="0.0" y="151.50000023841858" width="1024" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jSG-G4-vVV" id="PLm-C5-ZRv">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="l41-Rq-QUa">
+                                                    <rect key="frame" x="16" y="0.0" width="992" height="48"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repeat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noB-Ar-YCO">
+                                                            <rect key="frame" x="0.0" y="11" width="943" height="26.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NhM-Dp-1hI">
+                                                            <rect key="frame" x="943" y="8.5" width="51" height="31"/>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="l41-Rq-QUa" secondAttribute="trailing" constant="16" id="8PY-MO-Roh"/>
+                                                <constraint firstAttribute="bottom" secondItem="l41-Rq-QUa" secondAttribute="bottom" id="cvM-yl-4q2"/>
+                                                <constraint firstItem="l41-Rq-QUa" firstAttribute="top" secondItem="PLm-C5-ZRv" secondAttribute="top" id="dZO-aD-BR6"/>
+                                                <constraint firstItem="l41-Rq-QUa" firstAttribute="leading" secondItem="PLm-C5-ZRv" secondAttribute="leading" constant="16" id="wgp-pN-VUg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="NOTIFICATIONS" id="lCm-rE-ck6">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="iFi-Bx-o9T" userLabel="Show Alert Cell">
+                                        <rect key="frame" x="0.0" y="255.50000023841858" width="1024" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="iFi-Bx-o9T" id="ECN-Kt-jaQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RmY-QH-BZd">
+                                                    <rect key="frame" x="16" y="0.0" width="992" height="48"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P8N-qr-vlD">
+                                                            <rect key="frame" x="0.0" y="11" width="943" height="26.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cOB-SM-4nQ">
+                                                            <rect key="frame" x="943" y="8.5" width="51" height="31"/>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="RmY-QH-BZd" secondAttribute="trailing" constant="16" id="1Eq-nF-Cd4"/>
+                                                <constraint firstItem="RmY-QH-BZd" firstAttribute="leading" secondItem="ECN-Kt-jaQ" secondAttribute="leading" constant="16" id="KLP-1M-wOO"/>
+                                                <constraint firstAttribute="bottom" secondItem="RmY-QH-BZd" secondAttribute="bottom" id="VV8-y1-uUA"/>
+                                                <constraint firstItem="RmY-QH-BZd" firstAttribute="top" secondItem="ECN-Kt-jaQ" secondAttribute="top" id="ixr-BQ-HCc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="48" id="hG1-uF-kaB" userLabel="Alarm Cell">
+                                        <rect key="frame" x="0.0" y="303.50000023841858" width="1024" height="48"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hG1-uF-kaB" id="EtL-05-FFm">
+                                            <rect key="frame" x="0.0" y="0.0" width="1024" height="48"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="oNb-Bo-7LA">
+                                                    <rect key="frame" x="16" y="0.0" width="992" height="48"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alarm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bi5-em-OpY">
+                                                            <rect key="frame" x="0.0" y="11" width="943" height="26.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vX0-G5-lk4">
+                                                            <rect key="frame" x="943" y="8.5" width="51" height="31"/>
+                                                        </switch>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="oNb-Bo-7LA" secondAttribute="trailing" constant="16" id="02K-IM-MK4"/>
+                                                <constraint firstItem="oNb-Bo-7LA" firstAttribute="top" secondItem="EtL-05-FFm" secondAttribute="top" id="3SH-eh-MXS"/>
+                                                <constraint firstItem="oNb-Bo-7LA" firstAttribute="leading" secondItem="EtL-05-FFm" secondAttribute="leading" constant="16" id="IPI-Qj-1Nq"/>
+                                                <constraint firstAttribute="bottom" secondItem="oNb-Bo-7LA" secondAttribute="bottom" id="NAy-Z1-oAx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -283,6 +403,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="alarmSwitch" destination="vX0-G5-lk4" id="rjh-JI-EzL"/>
+                        <outlet property="alertSwitch" destination="cOB-SM-4nQ" id="yFb-9s-1Dm"/>
                         <outlet property="breakTimeLabel" destination="wJZ-KR-59W" id="g5g-EN-Bw9"/>
                         <outlet property="breakTimePicker" destination="8iE-Pj-7kp" id="5Kq-2K-cIa"/>
                         <outlet property="breakTimePickerCell" destination="EYu-4J-bK1" id="xf6-qs-CWQ"/>
@@ -291,17 +413,18 @@
                         <outlet property="focusTimePicker" destination="DL7-gW-FJE" id="Aco-IJ-Nem"/>
                         <outlet property="focusTimePickerCell" destination="bJC-Tv-mN1" id="hBT-6P-dy6"/>
                         <outlet property="focusTimeTapGestureRecognizer" destination="zr4-Gp-bwB" id="hWQ-cf-Wlb"/>
+                        <outlet property="repeatSwitch" destination="NhM-Dp-1hI" id="6hD-q6-3V2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VYH-xw-Zk6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="zr4-Gp-bwB" userLabel="Focus Time Tap Gesture Recognizer">
                     <connections>
-                        <action selector="focusTimeLabelTapped:" destination="3yC-oa-FXw" id="MFc-Gu-kuJ"/>
+                        <action selector="focusTimeCellTapped:" destination="3yC-oa-FXw" id="MFc-Gu-kuJ"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="G3Y-wx-poz" userLabel="Break Time Tap Gesture Recognizer">
                     <connections>
-                        <action selector="breakTimeLabelTapped:" destination="3yC-oa-FXw" id="Bc5-De-7Ve"/>
+                        <action selector="breakTimeCellTapped:" destination="3yC-oa-FXw" id="Bc5-De-7Ve"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
