@@ -16,7 +16,7 @@
 		7D7D5B0823638D9100B345FB /* SimplePomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */; };
 		7D7D5B1323638D9100B345FB /* SimplePomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */; };
 		7D88A86623A8787B005E5670 /* PomodoroTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */; };
-		7DAE482523A983E300073D49 /* PomodoroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE482423A983E300073D49 /* PomodoroViewController.swift */; };
+		7DAE482523A983E300073D49 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE482423A983E300073D49 /* MainViewController.swift */; };
 		7DC1000023A857F1009214C2 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */; };
 		7DC1000123A857F3009214C2 /* PomodoroTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */; };
 		7DC1FFF623A845A2009214C2 /* CountdownTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */; };
@@ -59,7 +59,7 @@
 		7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePomodoroUITests.swift; sourceTree = "<group>"; };
 		7D7D5B1423638D9100B345FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimerTests.swift; sourceTree = "<group>"; };
-		7DAE482423A983E300073D49 /* PomodoroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PomodoroViewController.swift; sourceTree = "<group>"; };
+		7DAE482423A983E300073D49 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7DC1FFF523A845A2009214C2 /* CountdownTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimer.swift; sourceTree = "<group>"; };
 		7DC1FFFC23A8502C009214C2 /* PomodoroTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PomodoroTimer.swift; sourceTree = "<group>"; };
 		7DC1FFFE23A857CA009214C2 /* CountdownTimerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerTests.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		7DE21B7323677B1E0077AB78 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7DAE482423A983E300073D49 /* PomodoroViewController.swift */,
+				7DAE482423A983E300073D49 /* MainViewController.swift */,
 				7DE21B7423677B3D0077AB78 /* SettingsTableViewController.swift */,
 			);
 			path = "View Controllers";
@@ -319,7 +319,7 @@
 				7DC1FFFD23A8502C009214C2 /* PomodoroTimer.swift in Sources */,
 				7DE21B7523677B3D0077AB78 /* SettingsTableViewController.swift in Sources */,
 				7D7D5AF123638D9100B345FB /* AppDelegate.swift in Sources */,
-				7DAE482523A983E300073D49 /* PomodoroViewController.swift in Sources */,
+				7DAE482523A983E300073D49 /* MainViewController.swift in Sources */,
 				7D7D5AF323638D9100B345FB /* SceneDelegate.swift in Sources */,
 				7D52CAE123A9819C001CEB57 /* ColorManager.swift in Sources */,
 			);
