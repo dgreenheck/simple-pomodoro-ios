@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol PomodoroTimerDelegate {
-    func timerTick(_ currentTime: TimeInterval)
+    func timerTick(_ currentTime: UInt32)
     func focusPeriodStarting()
     func focusPeriodFinished()
     func breakPeriodStarting()
@@ -17,16 +17,18 @@ public protocol PomodoroTimerDelegate {
 }
 
 public class PomodoroTimer {
+    private enum TimerMode {
+        case focus
+        case rest
+    }
+    
     // MARK: - Private Properties
     
-    /// Reference to the currently active timer, which could be focusTimer or restTimer
-    private var activeTimer: CountdownTimer?
+    /// The countdown timer
+    private var timer: CountdownTimer
     
-    /// Reference to countdown timer for focus period
-    private var focusTimer: CountdownTimer
-    
-    /// Reference to countdown timer for breka period
-    private var breakTimer: CountdownTimer
+    /// Timer mode
+    private var mode: TimerMode = .focus
     
     // MARK: - Public Properties
     
@@ -36,64 +38,61 @@ public class PomodoroTimer {
     /// Delegate to be notified of timer events
     public var delegate: PomodoroTimerDelegate?
     
-    /// True if the timer is currently running
+    /// Duration of the focus period in seconds
+    public var focusPeriodDuration: UInt32 = 0
+    
+    /// Duration of the break period in seconds
+    public var breakPeriodDuration: UInt32 = 0
+    
+    /// True if timer is currently running
     public var isRunning: Bool {
         get {
-            return self.activeTimer?.isRunning ?? false
+            return self.timer.isRunning
         }
     }
     
-    /// True if the timer is currently paused
+    /// True if timer is currently paused
     public var isPaused: Bool {
         get {
-            if let timer = self.activeTimer {
-                return !timer.isRunning
-            }
-            else {
-                return false
-            }
+            return self.timer.isPaused
         }
     }
     
-    // MARK: - Initialization
+    // MARK: - Init
     
-    /// Create a Pomodoro timer
-    /// - parameter focusDuration: Duration of the focus period
-    /// - parameter breakDuration: Duration of the break period
-    /// - parameter repeatTimer: Whether or not to repeat the focus/break period
-    public init(focusDuration: TimeInterval, breakDuration: TimeInterval, repeatTimer: Bool) {
-        self.repeatTimer = repeatTimer
-        self.focusTimer = CountdownTimer(focusDuration)
-        self.breakTimer = CountdownTimer(breakDuration)
-        
-        self.focusTimer.delegate = self
-        self.breakTimer.delegate = self
+    init() {
+        self.timer = CountdownTimer()
+        self.timer.delegate = self
     }
     
     // MARK: - Start/Stop
     
     /// Starts the timer, beginning with the focus period
     public func start() {
-        // If timer hasn't been started before, initialize it
-        if self.activeTimer == nil {
-            self.activeTimer = focusTimer
-            self.activeTimer?.start()
-            self.delegate?.focusPeriodStarting()
+        // If timer is currently running and is not paused, start() should do nothing
+        guard !(self.timer.isRunning && !self.timer.isPaused) else { return }
+        
+        // If timer is paused, just restart it
+        if self.timer.isPaused {
+            self.timer.start()
         }
         else {
-            self.activeTimer?.start()
+            self.mode = .focus
+            self.timer.duration = self.focusPeriodDuration
+            self.timer.start()
+            
+            self.delegate?.focusPeriodStarting()
         }
     }
     
     /// Pauses the timer
     public func pause() {
-        self.activeTimer?.stop()
+        self.timer.pause()
     }
     
     /// Stops the currently active timer and resets the timers
     public func reset() {
-        self.activeTimer?.stop()
-        self.activeTimer = nil
+        self.timer.stop()
     }
     
 //
@@ -123,35 +122,33 @@ public class PomodoroTimer {
 
 extension PomodoroTimer: CountdownTimerDelegate {
 
-    public func timerTick(_ currentTime: TimeInterval) {
+    public func timerTick(_ currentTime: UInt32) {
         self.delegate?.timerTick(currentTime)
     }
 
     public func timerFinished() {
-        guard let activeTimer = self.activeTimer else { return }
-        
-        // If the active timer is the focus timer, then notify the
-        // delegate the focus period has finished and immediately
-        // start the break timer
-        if activeTimer === self.focusTimer {
+        if self.mode == .focus {
+            self.timer.stop()
             self.delegate?.focusPeriodFinished()
-   
-            self.activeTimer = self.breakTimer
-            self.activeTimer?.start()
-
+            
+            // Switch to the break timer
+            self.mode = .rest
+            self.timer.duration = self.breakPeriodDuration
+            
+            self.timer.start()
             self.delegate?.breakPeriodStarting()
         }
-        // If the active timer is the break timer, then notify the
-        // delegate the break period has finished. If repeatTimer
-        // is enabled, then start a new timer right away
-        else if activeTimer === self.breakTimer {
+        else {
+            self.timer.stop()
             self.delegate?.breakPeriodFinished()
             
-            self.reset()
-            
-            // If the timer is to repeat, reset the timer objects and restart the timer
+            // If the timer is to repeat, switch back to the focus timer
             if self.repeatTimer {
-                self.start()
+                self.mode = .focus
+                self.timer.duration = self.focusPeriodDuration
+                
+                self.timer.start()
+                self.delegate?.focusPeriodStarting()
             }
         }
     }

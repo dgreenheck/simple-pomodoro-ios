@@ -16,16 +16,16 @@ class SettingsTableViewController: UITableViewController {
     // MARK: - Public Properties
     
     /// User selected duration for the focus period
-    public var focusPeriodDuration: TimeInterval {
+    public var focusPeriodDuration: UInt32 {
         get {
-            return self.focusTimePicker.countDownDuration
+            return UInt32(self.focusTimePicker.countDownDuration)
         }
     }
     
     /// User selected duration for the break period
-    public var breakPeriodDuration: TimeInterval {
+    public var breakPeriodDuration: UInt32 {
         get {
-            return self.breakTimePicker.countDownDuration
+            return UInt32(self.breakTimePicker.countDownDuration)
         }
     }
     

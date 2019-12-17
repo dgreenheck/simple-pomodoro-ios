@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MainViewController.swift
 //  SimplePomodoro
 //
 //  Created by Daniel Greenheck on 10/25/19.
@@ -10,7 +10,7 @@ import AVFoundation
 import UIKit
 import UserNotifications
 
-class PomodoroViewController: UIViewController {
+class MainViewController: UIViewController {
 
     // MARK: - Constants
     
@@ -19,13 +19,15 @@ class PomodoroViewController: UIViewController {
     
     // MARK: - Outlets
 
+    @IBOutlet weak var startPauseButton: CircleButton!
+    @IBOutlet weak var stopButton: CircleButton!
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var settingsTableViewController: SettingsTableViewController!
     
     // MARK: - Private Properties
     
     /// Instance of a countdown timer
-    private  var timer: PomodoroTimer?
+    private var timer: PomodoroTimer!
     
     /// True if the user has granted authorization to display notifications
     private var allowNotifications: Bool = false
@@ -34,6 +36,14 @@ class PomodoroViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Setup the Pomodoro timer
+        self.timer = PomodoroTimer()
+        self.timer?.delegate = self
+        
+        // Set initial button colors
+        self.stopButton.buttonColor = ColorManager.stopButtonColor
+        self.startPauseButton.buttonColor = ColorManager.startButtonColor
         
         // Request permission to display notifications to user
         let center = UNUserNotificationCenter.current()
@@ -52,54 +62,66 @@ class PomodoroViewController: UIViewController {
     }
     
     @IBAction func startButtonPressed(_ sender: Any) {
-        // If timer already exists and is paused, start it again
-        if let timer = self.timer {
-            if timer.isPaused {
-                timer.start()
-            }
+        // If timer is paused, just restart it
+        if self.timer.isPaused {
+            timer.start()
         }
         // Otherwise create a new timer and start it
         else {
-            let focusDuration = self.settingsTableViewController.focusPeriodDuration
-            let breakDuration = self.settingsTableViewController.breakPeriodDuration
-            let repeatTimer = self.settingsTableViewController.repeatSwitch.isOn
-            
-            self.timer = PomodoroTimer(focusDuration: focusDuration,
-                                       breakDuration: breakDuration,
-                                       repeatTimer: repeatTimer)
-            self.timer!.delegate = self
-            self.timer!.start()
+            self.timer.focusPeriodDuration = self.settingsTableViewController.focusPeriodDuration
+            self.timer.breakPeriodDuration = self.settingsTableViewController.breakPeriodDuration
+            self.timer.repeatTimer = self.settingsTableViewController.repeatSwitch.isOn
+            self.timer.start()
+        }
+        
+
+    }
+
+    @IBAction func resetButtonPressed(_ sender: Any) {
+        self.timer.reset()
+        
+        self.countdownLabel.textColor = .label
+        self.countdownLabel.text = formatHHMMSS(0)
+    }
+    
+    func modifyStartButtonState(isPaused: Bool) {
+        if isPaused {
+            // Change the start button to a pause button
+            self.startPauseButton.setTitle("Pause", for: .normal)
+            self.startPauseButton.buttonColor = ColorManager.pauseButtonColor
+        }
+        else {
+            // Change the start button to a pause button
+            self.startPauseButton.setTitle("Start", for: .normal)
+            self.startPauseButton.buttonColor = ColorManager.startButtonColor
         }
     }
     
-    @IBAction func pauseButtonPressed(_ sender: Any) {
-        self.timer?.pause()
-    }
-    
-    @IBAction func resetButtonPressed(_ sender: Any) {
-        self.timer?.reset()
-        self.timer = nil
-        
-        self.countdownLabel.textColor = .label
-        self.countdownLabel.text = TimeInterval.zero.formatHHMMSS()
+    func formatHHMMSS(_ totalSeconds: UInt32) -> String {
+        let hours = Int(totalSeconds) / 3600
+        let minutes = Int(totalSeconds) / 60 % 60
+        let seconds = Int(totalSeconds) % 60
+        return String(format:"%02i:%02i:%02i", hours, minutes, seconds)
     }
 }
 
 // MARK: - CountdownTimerDelegate
 
-extension PomodoroViewController: PomodoroTimerDelegate {
-
+extension MainViewController: PomodoroTimerDelegate {
+    
     func focusPeriodStarting() {
+        print("focusPeriodStarting called")
         DispatchQueue.main.async {
             self.countdownLabel.textColor = .systemOrange
-            self.countdownLabel.text = self.settingsTableViewController.focusPeriodDuration.formatHHMMSS()
+            self.countdownLabel.text = self.formatHHMMSS(self.settingsTableViewController.focusPeriodDuration)
         }
     }
     
     func breakPeriodStarting() {
+        print("breakPeriodStarting called")
         DispatchQueue.main.async {
             self.countdownLabel.textColor = .systemBlue
-            self.countdownLabel.text = self.settingsTableViewController.breakPeriodDuration.formatHHMMSS()
+            self.countdownLabel.text = self.formatHHMMSS(self.settingsTableViewController.breakPeriodDuration)
         }
     }
     
@@ -120,7 +142,6 @@ extension PomodoroViewController: PomodoroTimerDelegate {
             }
         }
     }
-    
 
     func breakPeriodFinished() {
         DispatchQueue.main.async {
@@ -140,9 +161,9 @@ extension PomodoroViewController: PomodoroTimerDelegate {
         }
     }
 
-    func timerTick(_ currentTime: TimeInterval) {
+    func timerTick(_ currentTime: UInt32) {
         DispatchQueue.main.async {
-            self.countdownLabel.text = currentTime.formatHHMMSS()
+            self.countdownLabel.text = self.formatHHMMSS(currentTime)
         }
     }
 }

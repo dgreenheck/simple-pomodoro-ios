@@ -9,20 +9,13 @@
 import Foundation
 
 public protocol CountdownTimerDelegate {
-    func timerTick(_ currentTime: TimeInterval)
+    func timerTick(_ currentTime: UInt32)
     func timerFinished()
 }
 
-public  class CountdownTimer {
-    
+public class CountdownTimer {
     // MARK: - Private Properties
-    
-    /// Starting time duration
-    private var internalDuration: TimeInterval = 0
-    
-    /// Current time
-    private var internalTime: TimeInterval = 0
-    
+
     /// Reference to timer object
     private var timer: Timer?
     
@@ -31,62 +24,80 @@ public  class CountdownTimer {
     /// Delegate for timer events
     public var delegate: CountdownTimerDelegate?
     
-    /// Current time in seconds
-    public var currentTime: TimeInterval {
-        get {
-            return internalTime
-        }
-    }
+    /// Duration of the countdown timer
+    public var duration: UInt32 = 0
     
-    /// Starting duration of the timer
-    public var duration: TimeInterval {
-        set {
-            // Don't allow negative times
-            self.internalDuration = (newValue < 0) ? 0 : newValue
-        }
-        get {
-            return self.internalDuration
-        }
-    }
+    /// Current time in seconds
+    private(set) public var currentTime: UInt32 = 0
+    
+    /// Returns true if the timer is currently paused
+    private(set) public var isPaused: Bool = false
     
     /// Returns true if timer is running
-    public var isRunning: Bool {
-        return self.timer?.isValid ?? false
-    }
+    private(set) public var isRunning: Bool = false
     
     // MARK: - Initialization
     
+    init() {
+    }
+    
     /// Initializes a new CountdownTimer object
     /// - parameter duration:Duration of the timer
-    init(_ duration: TimeInterval) {
+    init(_ duration: UInt32) {
         self.duration = duration
     }
     
     // MARK: - Timer Functions
     
-    /// Starts the countdown timer
-    /// - parameter duration:Duration of the timer in seconds
+    /// Start the timer
     func start() {
-        guard self.duration > 0 else { return }
+        // If timer is currently running and is not paused, start() should do nothing
+        guard !(self.isRunning && !self.isPaused) else { return }
+        // If duration is zero, don't bother starting
+        guard self.duration >= 1 else { return }
         
-        // Set the initial duration of the timer
-        self.internalTime = self.duration
+        // If timer is paused, then just restart the timer and don't
+        // reset the current time
+        if self.isPaused {
+            self.isPaused = false
+        }
+        // Start new timer (if not already running)
+        else {
+            self.currentTime = self.duration
+        }
         
         // Schedule 1 second repeating timer to update display
-        self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: {
+        self.isRunning = true
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: {
             (timer) in
-            self.internalTime -= 1.0
+            self.currentTime -= 1
             self.delegate?.timerTick(self.currentTime)
             
-            if self.currentTime.isZero {
-                self.timer?.invalidate()
+            // Once countdown reaches zero, stop the timer and notify
+            // the delegate the timer is finished
+            if self.currentTime == 0 {
+                self.stop()
                 self.delegate?.timerFinished()
             }
         })
     }
     
-    /// Stops the countdown timer
+    /// Pause the timer
+    func pause() {
+        guard self.isRunning else { return }
+
+        self.isPaused = true
+        // Stop the current timer task
+        self.timer?.invalidate()
+    }
+    
+    /// Stop the timer
     func stop() {
+        guard self.isRunning else { return }
+        
+        self.isRunning = false
+        self.isPaused = false
+        // Stop the current timer task
         self.timer?.invalidate()
     }
 }

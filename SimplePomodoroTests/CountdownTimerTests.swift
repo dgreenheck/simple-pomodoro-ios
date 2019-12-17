@@ -11,83 +11,250 @@ import XCTest
 class CountdownTimerTests: XCTestCase {
 
     // MARK: - Constants
+
+    private let timerTimeout: TimeInterval = 2
     
-    private var defaultDuration: TimeInterval = 1.0
+    // MARK: - Private Properties
     
-    // MARK: - UUT
-    
+    /// Unit under test
     private var countdownTimer: CountdownTimer!
+    
+    /// Delegate responses
+    private var timerTickExpectation: XCTestExpectation?
+    private var timerFinishedExpectation: XCTestExpectation?
     
     // MARK: - Setup / Tear Down
     override func setUp() {
-        // Create UUT
-        self.countdownTimer = CountdownTimer(self.defaultDuration)
+        // Create UUT and assign this test case as the delegate to handle the asynchronous function calls
+        self.countdownTimer = CountdownTimer(0)
+        self.countdownTimer.delegate = self
+        
+        self.timerTickExpectation = XCTestExpectation(description: "timerTick delegate function called")
+        self.timerFinishedExpectation = XCTestExpectation(description: "timerFinished delegate function called")
     }
 
     override func tearDown() {
-        self.countdownTimer  = nil
+        self.countdownTimer = nil
     }
 
-    // MARK: - Function: Start
+    // MARK: - Delegate Functions Called
     
-    func test_start_positiveDuration() {
+    func test_timerTick_triggered() {
         // Given
+        self.countdownTimer.duration = 10
         
         // When
-        self.countdownTimer.duration = 1.0
         self.countdownTimer.start()
         
         // Then
-        XCTAssertTrue(self.countdownTimer.isRunning)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
     }
     
-    func test_start_zeroDuration() {
+    func test_timerFinished_triggered() {
         // Given
+        self.countdownTimer.duration = 1
         
         // When
-        self.countdownTimer.duration = 0
         self.countdownTimer.start()
         
         // Then
-        // Timer should automatically return if zero duration
-        XCTAssertFalse(self.countdownTimer.isRunning)
+        wait(for: [self.timerFinishedExpectation!], timeout: timerTimeout)
     }
+
+    // MARK: - start()
     
-    // MARK: - Property: Duration
-    
-    func test_duration_setNegative() {
+    func test_start_twice() {
         // Given
-        let negativeDuration = TimeInterval(-1.0)
+        let startDuration: UInt32 = 10
+        self.countdownTimer.duration = startDuration
         
         // When
-        self.countdownTimer.duration = negativeDuration
+        
+        // 1. Start timer and wait for one tick
+        self.countdownTimer.start()
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+        // Reset the expectation since it has been fulfilled
+        self.timerTickExpectation = XCTestExpectation(description: "timerTick delegate function called")
+        
+        // 2. Attempt to start timer again, wait for another tick
+        self.countdownTimer.start()
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
         
         // Then
-        // Duration should default to zero
-        XCTAssert(self.countdownTimer.duration == 0)
+        // Timer should have decrement by 2 seconds since the second call
+        // to start should have been ignored.
+        XCTAssert(self.countdownTimer.currentTime == (startDuration - 2))
     }
     
-    func test_duration_setZero() {
+    func test_start_afterPause() {
         // Given
-        let zeroDuration = TimeInterval.zero
+        let startDuration: UInt32 = 10
+        self.countdownTimer.duration = startDuration
         
         // When
-        self.countdownTimer.duration = zeroDuration
+        
+        // 1. Start timer
+        self.countdownTimer.start()
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+        // Reset the tick expectation since it has been fulfilled
+        self.timerTickExpectation = XCTestExpectation(description: "timerTick delegate function called")
+        
+        // 2. Pause timer
+        self.countdownTimer.pause()
+        
+        // 3. Start again after pause
+        self.countdownTimer.start()
         
         // Then
-        // Duration should default to zero
-        XCTAssert(self.countdownTimer.duration == 0)
+        // Verify timer started again
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
     }
     
-    func test_duration_setPositive() {
+    func test_start_afterStopping() {
         // Given
-        let positiveDuration = TimeInterval(10.0)
+        let startDuration: UInt32 = 10
+        self.countdownTimer.duration = startDuration
         
         // When
-        self.countdownTimer.duration =  positiveDuration
+        self.countdownTimer.start()
+        self.countdownTimer.stop()
+        self.countdownTimer.start()
         
         // Then
-        // Duration should read back what user set it to
-        XCTAssert(self.countdownTimer.duration == positiveDuration)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    func test_start_afterFinished() {
+        // Given
+        let startDuration: UInt32 = 1
+        self.countdownTimer.duration = startDuration
+        
+        // When
+        self.countdownTimer.start()
+        wait(for: [self.timerFinishedExpectation!], timeout: timerTimeout)
+        self.countdownTimer.start()
+        
+        // Then
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    // MARK: - pause()
+    
+    func test_pause_afterStarting() {
+        // Given
+        self.countdownTimer.duration = 10
+        
+        // When
+        self.countdownTimer.start()
+        self.countdownTimer.pause()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == true)
+    }
+    
+    func test_pause_withoutStarting() {
+        // Given
+        self.countdownTimer.duration = 10
+        
+        // When
+        self.countdownTimer.pause()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+    }
+    
+    func test_pause_afterStopping() {
+        // Given
+        self.countdownTimer.duration = 10
+        
+        // When
+        self.countdownTimer.start()
+        self.countdownTimer.stop()
+        self.countdownTimer.pause()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+    }
+    
+    // MARK: - stop()
+    
+    func test_stop_afterStarting() {
+        // Given
+        self.countdownTimer.duration = 10
+        // Expect the timer tick event not to occur since stop is called immediately
+        self.timerTickExpectation!.isInverted = true
+        
+        // When
+        self.countdownTimer.start()
+        self.countdownTimer.stop()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+        XCTAssert(self.countdownTimer.isRunning == false)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    func test_stop_afterPausing() {
+        // Given
+        self.countdownTimer.duration = 10
+        // Expect the timer tick event not to occur since stop is called immediately
+        self.timerTickExpectation!.isInverted = true
+        
+        // When
+        self.countdownTimer.start()
+        self.countdownTimer.pause()
+        self.countdownTimer.stop()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+        XCTAssert(self.countdownTimer.isRunning == false)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    func test_stop_withoutStarting() {
+        // Given
+        self.countdownTimer.duration = 10
+        
+        // When
+        self.countdownTimer.stop()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+        XCTAssert(self.countdownTimer.isRunning == false)
+    }
+    
+    func test_stop_twice() {
+        // Given
+        self.countdownTimer.duration = 10
+        
+        // When
+        self.countdownTimer.start()
+        self.countdownTimer.stop()
+        self.countdownTimer.stop()
+        
+        // Then
+        XCTAssert(self.countdownTimer.isPaused == false)
+        XCTAssert(self.countdownTimer.isRunning == false)
+    }
+}
+
+// MARK: - CountdownTimerDelegate
+
+extension CountdownTimerTests: CountdownTimerDelegate {
+    
+    func timerTick(_ currentTime: UInt32) {
+        guard let timerTickExpectation = self.timerTickExpectation else {
+            XCTFail("timerTickExpectation unexpectedly nil")
+            return
+        }
+        timerTickExpectation.fulfill()
+    }
+    
+    func timerFinished() {
+        guard let timerFinishedExpectation = self.timerFinishedExpectation else {
+            XCTFail("timerFinishedExpectation unexpectedly nil")
+            return
+        }
+        timerFinishedExpectation.fulfill()
     }
 }
