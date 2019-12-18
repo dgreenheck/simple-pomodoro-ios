@@ -1,5 +1,9 @@
 # SimplePomodoro
 
+## Demo
+
+<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/dark_mode.gif" width="250">
+
 ## Introduction
 While I was preparing for iOS Developer interviews, I realized I wasn't taking as many breaks as I needed to stand up and stretch. That gave me the idea to create a simple Pomoodoro timer app. There's a billion of these on the app store already (for that reason I won't be able to publish it), but I thought it would be a fun, simple project to add to my portfolio. Plus, it will keep me sane and healthy during my study sessions!
 
