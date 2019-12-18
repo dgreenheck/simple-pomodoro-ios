@@ -22,16 +22,18 @@ For those of you not familiar, a Pomodoro timer is a two-stage timer. The first 
 8. Support Dark Mode for iOS 13 devices.
 9. Reasonable unit test coverage
 
+## UI Layout
+
+Since this is a simple app, I wanted everything on one screen rather than tucking the timer settings into a separate view controller.
+
+The primary view controller contains the countdown timer label and the start/stop buttons. A secondary UITableViewController is embedded into the primary view control to display the timer settings.
+
+All colors are managed via a ColorManager class to keep consistency across the application.
+
 ## Architecture
 
 ### CountdownTimer
-This is the fundamental building block of the application. It is a simple countdown timer object with the following methods
-
-- start()
-- stop()
-- pause()
-
-The timerTick(currentTime:) and timerFinished() events are exposed via the delegate design pattern.
+This is the fundamental building block of the application. It is a simple countdown timer object that implements start/pause/stop functionality. Timer events are handled via delegation.
 
 ### PomodoroTimer
 While I could have stuffed everything into a single timer object, I thought it would be a bit cleaner to abstract out the fundamental CountdownTimer object, then have a second abstraction layer to handle the "Pomodoro" behavior.
