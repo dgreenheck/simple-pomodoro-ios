@@ -37,8 +37,13 @@ import UIKit
         context.setFillColor(self.backgroundColor!.cgColor)
         context.fill(rect)
         
+        var alpha: CGFloat = 0.85
+        if traitCollection.userInterfaceStyle == .dark {
+            alpha = 0.5
+        }
+        
         // --------- BUTTON BACKGROUND ------------- //
-        context.setFillColor(self.buttonColor.withAlphaComponent(0.7).cgColor)
+        context.setFillColor(self.buttonColor.withAlphaComponent(alpha).cgColor)
         context.fillEllipse(in: rect)
         
         let insetRect1 = rect.inset(by: .init(top: inset1, left: inset1, bottom: inset1, right: inset1))
@@ -46,7 +51,7 @@ import UIKit
         context.fillEllipse(in: insetRect1)
         
         let insetRect2 = rect.inset(by: .init(top: inset2, left: inset2, bottom: inset2, right: inset2))
-        context.setFillColor(self.buttonColor.withAlphaComponent(0.7).cgColor)
+        context.setFillColor(self.buttonColor.withAlphaComponent(alpha).cgColor)
         context.fillEllipse(in: insetRect2)
     }
 }

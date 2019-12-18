@@ -10,8 +10,9 @@ import UIKit
 
 class SettingsTableViewController: UITableViewController {
     // MARK: - Constants
-    private let ANIMATION_DURATION = 0.2
-    private let TIME_PICKER_EXPANDED_HEIGHT: CGFloat = 216
+    
+    let ANIMATION_DURATION = 0.2
+    let TIME_PICKER_EXPANDED_HEIGHT: CGFloat = 216
     
     // MARK: - Public Properties
     
@@ -29,7 +30,7 @@ class SettingsTableViewController: UITableViewController {
         }
     }
     
-    // Mark: - Outlets
+    // MARK: - Outlets
     
     @IBOutlet weak var repeatSwitch: UISwitch!
     @IBOutlet weak var alertSwitch: UISwitch!
@@ -53,6 +54,8 @@ class SettingsTableViewController: UITableViewController {
     var focusTimePickerCellHeight: CGFloat = 0
     var breakTimePickerCellHeight: CGFloat = 0
     
+    // MARK: - View Setup
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -62,6 +65,8 @@ class SettingsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    // MARK: - Table View
     
     /// Customize table view cell row heights
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -173,6 +178,8 @@ class SettingsTableViewController: UITableViewController {
             self.breakTimeLabel.text = self.formatHourMinuteString(duration: self.breakTimePicker.countDownDuration)
         }
     }
+    
+    // MARK: - Helper
     
     func formatHourMinuteString(duration: TimeInterval) -> String {
         let hours = Int(duration) / 3600

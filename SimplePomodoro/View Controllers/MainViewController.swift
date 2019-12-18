@@ -24,13 +24,13 @@ class MainViewController: UIViewController {
     @IBOutlet weak var countdownLabel: UILabel!
     @IBOutlet weak var settingsTableViewController: SettingsTableViewController!
     
-    // MARK: - Private Properties
+    // MARK: - Properties
     
     /// Instance of a countdown timer
-    private var timer: PomodoroTimer!
+    var timer: PomodoroTimer!
     
     /// True if the user has granted authorization to display notifications
-    private var allowNotifications: Bool = false
+    var allowNotifications: Bool = false
     
     // MARK: - View Setup
     
@@ -61,20 +61,28 @@ class MainViewController: UIViewController {
         }
     }
     
-    @IBAction func startButtonPressed(_ sender: Any) {
-        // If timer is paused, just restart it
-        if self.timer.isPaused {
-            timer.start()
+    // MARK: - UI Actions
+    
+    @IBAction func startPauseButtonPressed(_ sender: Any) {
+        // If timer is running, this button operates as a start/pause button
+        if self.timer.isRunning {
+            if self.timer.isPaused {
+                timer.start()
+                self.showAsPauseButton()
+            }
+            else {
+                self.timer.pause()
+                self.showAsStartButton()
+            }
         }
-        // Otherwise create a new timer and start it
+        // If timer isn't running, start it
         else {
             self.timer.focusPeriodDuration = self.settingsTableViewController.focusPeriodDuration
             self.timer.breakPeriodDuration = self.settingsTableViewController.breakPeriodDuration
             self.timer.repeatTimer = self.settingsTableViewController.repeatSwitch.isOn
             self.timer.start()
+            self.showAsPauseButton()
         }
-        
-
     }
 
     @IBAction func resetButtonPressed(_ sender: Any) {
@@ -82,20 +90,22 @@ class MainViewController: UIViewController {
         
         self.countdownLabel.textColor = .label
         self.countdownLabel.text = formatHHMMSS(0)
+        self.showAsStartButton()
+    }
+
+    func showAsStartButton() {
+        self.startPauseButton.setTitle("Start", for: .normal)
+        self.startPauseButton.buttonColor = ColorManager.startButtonColor
+        self.startPauseButton.setNeedsDisplay()
     }
     
-    func modifyStartButtonState(isPaused: Bool) {
-        if isPaused {
-            // Change the start button to a pause button
-            self.startPauseButton.setTitle("Pause", for: .normal)
-            self.startPauseButton.buttonColor = ColorManager.pauseButtonColor
-        }
-        else {
-            // Change the start button to a pause button
-            self.startPauseButton.setTitle("Start", for: .normal)
-            self.startPauseButton.buttonColor = ColorManager.startButtonColor
-        }
+    func showAsPauseButton() {
+        self.startPauseButton.setTitle("Pause", for: .normal)
+        self.startPauseButton.buttonColor = ColorManager.pauseButtonColor
+        self.startPauseButton.setNeedsDisplay()
     }
+    
+    // MARK: - Helper Functions
     
     func formatHHMMSS(_ totalSeconds: UInt32) -> String {
         let hours = Int(totalSeconds) / 3600
@@ -128,7 +138,7 @@ extension MainViewController: PomodoroTimerDelegate {
     func focusPeriodFinished() {
         DispatchQueue.main.async {
             // Play alert if enabled
-            if self.settingsTableViewController.alertSwitch.isOn {
+            if self.settingsTableViewController.alarmSwitch.isOn {
                 AudioServicesPlaySystemSound(self.alertSoundID)
             }
             
@@ -145,18 +155,35 @@ extension MainViewController: PomodoroTimerDelegate {
 
     func breakPeriodFinished() {
         DispatchQueue.main.async {
+            self.resetButtonPressed(self)
+            
             // Play alert if enabled
-            if self.settingsTableViewController.alertSwitch.isOn {
+            if self.settingsTableViewController.alarmSwitch.isOn {
                 AudioServicesPlaySystemSound(self.alertSoundID)
             }
             
-            // Show the alert if enabled
-            if self.settingsTableViewController.alertSwitch.isOn {
-                let alert = UIAlertController(title: "Times Up!",
-                                              message: "Back to work! You can do it!",
-                                              preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true)
+            // If the timer is to repeat, programmatically hit the start button again
+            if self.settingsTableViewController.repeatSwitch.isOn {
+                // Show the alert if enabled
+                if self.settingsTableViewController.alertSwitch.isOn {
+                    let alert = UIAlertController(title: "Times Up!",
+                                                  message: "Back to work! You can do it!",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                }
+                
+                self.startPauseButtonPressed(self)
+            }
+            else {
+                // Show the alert if enabled
+                if self.settingsTableViewController.alertSwitch.isOn {
+                    let alert = UIAlertController(title: "Done!",
+                                                  message: "Nice job!",
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(alert, animated: true)
+                }
             }
         }
     }

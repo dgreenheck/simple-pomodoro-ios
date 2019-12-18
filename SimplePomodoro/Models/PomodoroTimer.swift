@@ -44,6 +44,13 @@ public class PomodoroTimer {
     /// Duration of the break period in seconds
     public var breakPeriodDuration: UInt32 = 0
     
+    /// Returns the current time of the timer
+    public var currentTime: UInt32 {
+        get {
+            return self.timer.currentTime
+        }
+    }
+    
     /// True if timer is currently running
     public var isRunning: Bool {
         get {
@@ -69,14 +76,12 @@ public class PomodoroTimer {
     
     /// Starts the timer, beginning with the focus period
     public func start() {
-        // If timer is currently running and is not paused, start() should do nothing
-        guard !(self.timer.isRunning && !self.timer.isPaused) else { return }
-        
         // If timer is paused, just restart it
         if self.timer.isPaused {
             self.timer.start()
         }
-        else {
+        else if !self.timer.isRunning {
+            // Start a new timer for the focus period
             self.mode = .focus
             self.timer.duration = self.focusPeriodDuration
             self.timer.start()
@@ -141,15 +146,6 @@ extension PomodoroTimer: CountdownTimerDelegate {
         else {
             self.timer.stop()
             self.delegate?.breakPeriodFinished()
-            
-            // If the timer is to repeat, switch back to the focus timer
-            if self.repeatTimer {
-                self.mode = .focus
-                self.timer.duration = self.focusPeriodDuration
-                
-                self.timer.start()
-                self.delegate?.focusPeriodStarting()
-            }
         }
     }
 }

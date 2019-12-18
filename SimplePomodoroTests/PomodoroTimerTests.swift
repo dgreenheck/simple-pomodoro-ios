@@ -97,10 +97,123 @@ class PomodoroTimerTests: XCTestCase {
     
     // MARK: - start()
     
+    func test_start_twice() {
+        // Given
+        let startDuration: UInt32 = 10
+        self.timer.focusPeriodDuration = startDuration
+        
+        // When
+        
+        // 1. Start timer and wait for one tick
+        self.timer.start()
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+        // Reset the expectation since it has been fulfilled
+        self.timerTickExpectation = XCTestExpectation(description: "timerTick(currentTime:) delegate method called")
+        
+        // 2. Attempt to start timer again, wait for another tick
+        self.timer.start()
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+        
+        // Then
+        // Timer should have decrement by 2 seconds since the second call
+        // to start should have been ignored.
+        XCTAssert(self.timer.currentTime == (startDuration - 2))
+    }
+    
     // MARK: - pause()
     
-    // Mark: - stop()
+    func test_pause_afterStarting() {
+        // Given
+        
+        // When
+        self.timer.start()
+        self.timer.pause()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == true)
+    }
+    
+    func test_pause_withoutStarting() {
+        // Given
+        
+        // When
+        self.timer.pause()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+    }
+    
+    func test_pause_afterReset() {
+        // Given
+        
+        // When
+        self.timer.start()
+        self.timer.reset()
+        self.timer.pause()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+    }
+    
+    // MARK: - reset()
+    
+    func test_reset_afterStarting() {
+        // Given
+        // Expect the timer tick event not to occur since stop is called immediately
+        self.timerTickExpectation!.isInverted = true
+        
+        // When
+        self.timer.start()
+        self.timer.reset()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+        XCTAssert(self.timer.isRunning == false)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    func test_reset_afterPausing() {
+        // Given
+        // Expect the timer tick event not to occur since stop is called immediately
+        self.timerTickExpectation!.isInverted = true
+        
+        // When
+        self.timer.start()
+        self.timer.pause()
+        self.timer.reset()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+        XCTAssert(self.timer.isRunning == false)
+        wait(for: [self.timerTickExpectation!], timeout: timerTimeout)
+    }
+    
+    func test_reset_withoutStarting() {
+        // Given
+        
+        // When
+        self.timer.reset()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+        XCTAssert(self.timer.isRunning == false)
+    }
+    
+    func test_stop_twice() {
+        // Given
+
+        // When
+        self.timer.start()
+        self.timer.reset()
+        self.timer.reset()
+        
+        // Then
+        XCTAssert(self.timer.isPaused == false)
+        XCTAssert(self.timer.isRunning == false)
+    }
 }
+
+// MARK: - PomodoroTimerDelegate
 
 extension PomodoroTimerTests: PomodoroTimerDelegate {
     

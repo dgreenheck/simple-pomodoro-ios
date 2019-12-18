@@ -7,13 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D1B9F5323AA02B200D087CD /* SettingsTableViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1B9F5223AA02B200D087CD /* SettingsTableViewControllerTests.swift */; };
+		7D1B9F5523AA06A600D087CD /* MainViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1B9F5423AA06A600D087CD /* MainViewControllerTests.swift */; };
+		7D1D3A6B23A9FAFF00B641CE /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AC3602363B6BF007EA31B /* CircleButton.swift */; };
+		7D1D3A6C23A9FB0300B641CE /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52CAE023A9819C001CEB57 /* ColorManager.swift */; };
 		7D52CAE123A9819C001CEB57 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D52CAE023A9819C001CEB57 /* ColorManager.swift */; };
 		7D7AC3612363B6BF007EA31B /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7AC3602363B6BF007EA31B /* CircleButton.swift */; };
 		7D7D5AF123638D9100B345FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5AF023638D9100B345FB /* AppDelegate.swift */; };
 		7D7D5AF323638D9100B345FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5AF223638D9100B345FB /* SceneDelegate.swift */; };
 		7D7D5AF823638D9100B345FB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7D5AF623638D9100B345FB /* Main.storyboard */; };
 		7D7D5AFA23638D9100B345FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D7D5AF923638D9100B345FB /* Assets.xcassets */; };
-		7D7D5B0823638D9100B345FB /* SimplePomodoroTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */; };
 		7D7D5B1323638D9100B345FB /* SimplePomodoroUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */; };
 		7D88A86623A8787B005E5670 /* PomodoroTimerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */; };
 		7DAE482523A983E300073D49 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DAE482423A983E300073D49 /* MainViewController.swift */; };
@@ -44,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D1B9F5223AA02B200D087CD /* SettingsTableViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewControllerTests.swift; sourceTree = "<group>"; };
+		7D1B9F5423AA06A600D087CD /* MainViewControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewControllerTests.swift; sourceTree = "<group>"; };
 		7D52CAE023A9819C001CEB57 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		7D7AC3602363B6BF007EA31B /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		7D7D5AED23638D9100B345FB /* SimplePomodoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimplePomodoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,7 +58,6 @@
 		7D7D5AF923638D9100B345FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D7D5AFE23638D9100B345FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D7D5B0323638D9100B345FB /* SimplePomodoroTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplePomodoroTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePomodoroTests.swift; sourceTree = "<group>"; };
 		7D7D5B0923638D9100B345FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D7D5B0E23638D9100B345FB /* SimplePomodoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimplePomodoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D7D5B1223638D9100B345FB /* SimplePomodoroUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePomodoroUITests.swift; sourceTree = "<group>"; };
@@ -130,9 +134,10 @@
 		7D7D5B0623638D9100B345FB /* SimplePomodoroTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D1B9F5423AA06A600D087CD /* MainViewControllerTests.swift */,
+				7D1B9F5223AA02B200D087CD /* SettingsTableViewControllerTests.swift */,
 				7D88A86523A8787B005E5670 /* PomodoroTimerTests.swift */,
 				7DC1FFFE23A857CA009214C2 /* CountdownTimerTests.swift */,
-				7D7D5B0723638D9100B345FB /* SimplePomodoroTests.swift */,
 				7D7D5B0923638D9100B345FB /* Info.plist */,
 			);
 			path = SimplePomodoroTests;
@@ -329,11 +334,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D7D5B0823638D9100B345FB /* SimplePomodoroTests.swift in Sources */,
 				7DC1000023A857F1009214C2 /* CountdownTimer.swift in Sources */,
 				7DC1000123A857F3009214C2 /* PomodoroTimer.swift in Sources */,
 				7DC1FFFF23A857CA009214C2 /* CountdownTimerTests.swift in Sources */,
+				7D1D3A6B23A9FAFF00B641CE /* CircleButton.swift in Sources */,
 				7D88A86623A8787B005E5670 /* PomodoroTimerTests.swift in Sources */,
+				7D1B9F5323AA02B200D087CD /* SettingsTableViewControllerTests.swift in Sources */,
+				7D1D3A6C23A9FB0300B641CE /* ColorManager.swift in Sources */,
+				7D1B9F5523AA06A600D087CD /* MainViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
