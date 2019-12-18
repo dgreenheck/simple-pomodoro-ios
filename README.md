@@ -13,21 +13,35 @@ For those of you not familiar, a Pomodoro timer is a two-stage timer. The first 
 4. Optionally, repeat the timer to allow multiple sessions in one sitting.
 5. Optionally, display an alert when the timer is finished.
 6. Optionally, play an alarm sound when the timer is finished.
-7. The timer should still work even if the app is running in the background.
-8. The app should abide by the Human Interface Guidelines and look similar to an Apple app.
-9. Support Dark Mode for iOS 13 devices.
-10. Reasonable unit test coverage
+7. The app should abide by the Human Interface Guidelines and look similar to an Apple app.
+8. Support Dark Mode for iOS 13 devices.
+9. Reasonable unit test coverage
 
 ## Architecture
 
 ### CountdownTimer
-This is the fundamental building block of the application. It is a simple countdown timer object that can be started, paused or stopped. Timer tick and finished events are exposed via the delegate design pattern.
+This is the fundamental building block of the application. It is a simple countdown timer object with the following methods
+
+- start()
+- stop()
+- pause()
+
+The timerTick(currentTime:) and timerFinished() events are exposed via the delegate design pattern.
 
 ### PomodoroTimer
 While I could have stuffed everything into a single timer object, I thought it would be a bit cleaner to abstract out the fundamental CountdownTimer object, then have a second abstraction layer to handle the "Pomodoro" behavior.
 
+The PomodoroTimer class handles the transition between the "focus" timer and the "rest" timer. Events corresponding to the start and end of each period are passed on to the delegate to initiate UI actions such as displaying message boxes or playing alerts.
+
 ## Skills Demonstrated
-- **Animation**: One of my goals in this project was producing something that mimicked an Apple app. When you click on the focus time or the break, a hidden table view cell is expanded to reveal a time picker.
+- **Animation**: One of my goals in this project was producing something that mimicked an Apple app. When you click on the focus time or the break time, a hidden table view cell is expanded to reveal a time picker.
+- **Delegation**: Messages from the CountdownTimer/PomodoroTimer objects are passed to the view controller via the delegation design pattern.
+- **Custom UI Controls**: The buttons have a custom draw() function to have the same appearance as the Start/Pause/Stop buttons on the iOS built-in timer app.
+- **TableView**: Timer settings are presented to as a scrollable UITableView
 - **Timer**: In a timer app, you need to use timers! To get the countdown time to continually update I scheduled a timer that would trigger every second. I maintained the current countdown time in a separate staet.
-- **Notifications**: 
-- **Asynchronous Testing**: 
+- **Unit Testing**: All core classes are unit tested, achieving > 93% code coverage.
+- **UI Testing**: Several functional tests are performed to verify the UI responds accordingly to user actions.
+
+## Future Work
+- Push notifications for timer events while app is running in the background
+- Select the alarm sound
