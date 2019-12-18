@@ -41,13 +41,13 @@ While I could have stuffed everything into a single timer object, I thought it w
 The *PomodoroTimer* class handles the transition between the "focus" timer and the "rest" timer. Events corresponding to the start and end of each period are passed on to a delegate implementing the *PomodoroTimerProtocol* to initiate UI actions such as displaying message boxes or playing alerts.
 
 ## Skills Demonstrated
-- **Animation**: One of my goals in this project was producing something that mimicked an Apple app. When you click on the focus time or the break time, a hidden table view cell is expanded to reveal a time picker. The type of animation can be found when selecting start/stop times for an event in the Calendar app.
-- **Delegation**: Messages from the *CountdownTimer*/*PomodoroTimer* objects are passed to the view controller using the delegation design pattern. This creates a nice separation between the model logic and the view.
-- **Custom UI Controls**: I defined a custom draw() function for the Start/Stop buttons so they have the same appearance as the Start/Stop buttons on the iOS built-in timer app.
-- **TableView**: Timer settings are presented as a scrollable UITableView
-- **Timer**: In a timer app, you need to use timers! To get the countdown time to continually update I scheduled a timer that would trigger every second. Upon each firing, the internal countdown time is decremented until it reaches zero.
-- **Unit Testing**: All model and view controller classes are unit tested, achieving > 93% test coverage. There's still a few test cases that need to be implemented to achieve full coverage.
-- **UI Testing**: Several functional tests are performed to verify the UI responds accordingly to user actions. Once again, could use a few more test cases here.
+- **Animation** - One of my goals in this project was producing something that mimicked an Apple app. When you click on the focus time or the break time, a hidden table view cell is expanded to reveal a time picker. The type of animation can be found when selecting start/stop times for an event in the Calendar app.
+- **Delegation** - Messages from the *CountdownTimer*/*PomodoroTimer* objects are passed to the view controller using the delegation design pattern. This creates a nice separation between the model logic and the view.
+- **Custom UI Controls** - I defined a custom draw() function for the Start/Stop buttons so they have the same appearance as the Start/Stop buttons on the iOS built-in timer app.
+- **TableView** - Timer settings are presented as a scrollable UITableView
+- **Timer** - In a timer app, you need to use timers! To get the countdown time to continually update I scheduled a timer that would trigger every second. Upon each firing, the internal countdown time is decremented until it reaches zero.
+- **Unit Testing** - All model and view controller classes are unit tested, achieving > 93% test coverage. There's still a few test cases that need to be implemented to achieve full coverage.
+- **UI Testing** - Several functional tests are performed to verify the UI responds accordingly to user actions. Once again, could use a few more test cases here.
 
 ## Future Work
 - Push notifications for timer events while app is running in the background
