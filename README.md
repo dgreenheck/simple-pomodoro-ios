@@ -1,10 +1,11 @@
 # SimplePomodoro
 
-## Demo
-
-<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/dark_mode.gif" width="250">
-
 ## Introduction
+
+<pre>
+<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/setup.gif" width="250">
+</pre>
+
 While I was preparing for iOS Developer interviews, I realized I wasn't taking as many breaks as I needed to stand up and stretch. That gave me the idea to create a simple Pomoodoro timer app. There's a billion of these on the app store already (for that reason I won't be able to publish it), but I thought it would be a fun, simple project to add to my portfolio. Plus, it will keep me sane and healthy during my study sessions!
 
 ## What is a Pomodoro Timer?
@@ -49,3 +50,18 @@ The PomodoroTimer class handles the transition between the "focus" timer and the
 ## Future Work
 - Push notifications for timer events while app is running in the background
 - Select the alarm sound
+
+## Demo
+
+### Setup
+<pre>
+<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/setup.gif" width="250">
+</pre>
+### Focus Timer Elapsed
+<pre>
+<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/focus_timer_done.gif" width="250">
+</pre>
+### Rest Timer Elapsed
+<pre>
+<img src="https://github.com/dgreenheck/SimplePomodoro/blob/master/demo/break_timer_done.gif" width="250">
+</pre>
