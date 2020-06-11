@@ -80,6 +80,9 @@ public class CountdownTimer {
                 self.delegate?.timerFinished()
             }
         })
+        //Add the timer to the .common RunLoop to keep it working
+        //while the user is interacting with UI
+        RunLoop.current.add(timer!, forMode: .common)
     }
     
     /// Pause the timer
